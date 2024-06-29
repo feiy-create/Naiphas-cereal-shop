@@ -43,7 +43,7 @@ cover>
 </v-card>
     <div>
         <v-row>
-            <v-col cols="12" md="4" v-for="product in stockdetails":key=product>
+            <v-col cols="12" md="4" v-for="product in stock":key=product>
                 </v-col>
         </v-row>
     </div>
@@ -77,6 +77,7 @@ cover>
     </v-card>
 </template>
 <script>
+import { mapActions,mapGetters } from 'vuex';
 export default {
 data(){
     methods: {
@@ -90,62 +91,20 @@ data(){
             this.calculateTotal(product.itemPrice)
         }
     }
+   
     return{
-        stockdetails  : [
-      {
-                itemNumber: 1,
-                itemName : "crumpets",
-                itemPrice : 200,
-                itemQuantity : 150,
-                itemImage: 'Naipha cerials/public/cerial pic8.png',
-                description:"greatness  in  every scoop"
-            },
-            {
-                itemNumber: 2,
-                itemName : "foam squares",
-                itemPrice : 500,
-                itemQuantity : 400,
-                itemImage: 'Naipha cerials/public/cerial pic6.jpeg',
-                description:"greatness  in  every scoop"
-            },
-              {
-                itemNumber: 3,
-                itemName : "waffle balls",
-                itemPrice : 100,
-                itemQuantity : 600,
-                itemImage: 'Naipha cerials/public/cerial pic7.png',
-                description:"greatness  in  every scoop" 
-            },
-            {
-              itemNumber: 4,
-                itemName : "cheerios",
-                itemPrice : 1000,
-                itemQuantity : 700,
-                itemImage: 'Naipha cerials\public\cerial pic5.jpeg',
-                description:"greatness  in  every scoop"
-            },
-            {
-              itemNumber: 5,
-                itemName : "quisp&quake",
-                itemPrice : 600,
-                itemQuantity : 800,
-                itemImage: 'Naipha cerials\public\cerial pic4.jpg',
-                description:"greatness  in  every scoop"
-            },
-            {itemNumber: 6,
-                itemName : "toast crunch",
-                itemPrice : 200,
-                itemQuantity : 400,
-                itemImage:'Naipha cerials\public\cerial pic3.jpeg',
-                description:"greatness  in  every scoop"
 
-            },
-
-      ], 
-      cartItems: [],
-      total: 0,
-
-    }
-}
+          }
+        },
+        methods:{
+            ...mapActions([
+                "addToCart"
+            ])
+},
+computed: {
+        ...mapGetters({
+            stock:'stock'
+        })
+    },
 }
 </script>
